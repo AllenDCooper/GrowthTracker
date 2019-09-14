@@ -13,23 +13,21 @@ class Signup extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state.username);
-    console.log(this.state.password);
   };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
-
     axios.post("/user/", {
       username: this.state.username,
       password: this.state.password
     })
     .then(response => {
-      if (response.data.errmsg){
+      console.log(response.data);
+      if (!response.data.errmsg){
         console.log("successful signup")
-        this.setState({
-          redirectTo: "/login"
-        })
+        // this.setState({
+        //   redirectTo: "/login"
+        // })
       } else {
         console.log("username already taken")
       }
