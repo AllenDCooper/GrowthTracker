@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import Axios from "axios";
+import axios from "axios";
 
 class Signup extends Component {
   state = {
@@ -13,11 +13,14 @@ class Signup extends Component {
     this.setState({
       [name]: value
     });
+    console.log(this.state.username);
+    console.log(this.state.password);
   };
 
   handleSubmit(event) {
     event.preventDefault();
-    Axios.post("/user/", {
+
+    axios.post("/user/", {
       username: this.state.username,
       password: this.state.password
     })
