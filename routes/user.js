@@ -6,7 +6,7 @@ const User = require("../models/user.js");
 router.post("/", (req, res) => {
   console.log("user signup");
 
-  const { username, password } = req.body
+  const { username, password } = req.body;
   console.log("username: " + username);
 
   User.findOne({ username: username }, (err, user) => {
