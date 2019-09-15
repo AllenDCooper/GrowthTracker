@@ -4,7 +4,7 @@
 
 The login authentication is handled by a React form component and sent via a POST request to the server, where it is authenticated with [Passport](http://www.passportjs.org/) and hashed with [bcrypt.js](https://www.npmjs.com/package/bcryptjs).
 
-[I'm an inline-style link](https://www.google.com)
+[Hosted on Heroku](https://growthtracker.herokuapp.com/)
 
 ## Tech Used
 `HTML`
