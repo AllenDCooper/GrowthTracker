@@ -3,6 +3,8 @@ const express = require("express");
 const session = require("express-session");
 // require random string session to create random session secret
 const randomString = require("randomstring");
+// require passport to save user object into session object (req.session) created by express-session
+const passport = require("passport")
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -26,6 +28,13 @@ app.use(
     saveUnitialized: false
   })
 );
+
+// initiatlize passport
+// this code runs serializeUser from passport library which adds user id in the req.session.passport.user object
+app.use(passport.initialize());
+// this code reuns deserializeUser from the passport library which checks to see if user is saved in the database, and if so, assigns the user object to req.user
+app.use(passport.session());
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/GTexamples_database");
