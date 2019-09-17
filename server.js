@@ -1,5 +1,8 @@
 const express = require("express");
-
+// require express-session to establish session connection
+const session = require("express-session");
+// require random string session to create random session secret
+const randomString = require("randomstring");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -14,6 +17,15 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes)
+
+// add middleware path for session
+app.use(
+  session({
+    secret: randomString.generate();
+    resave: false,
+    saveUnitialized: false
+  })
+);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/GTexamples_database");
