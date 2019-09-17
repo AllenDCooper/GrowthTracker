@@ -19,5 +19,4 @@ The login authentication is handled by a React form component and sent via a POS
 `Axios`
 `bcryptjs`
 `Passport`
-`React Video Cover`
 `ZenHub`
