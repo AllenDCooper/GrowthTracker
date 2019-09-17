@@ -3,6 +3,9 @@ import axios from "axios";
 
 class Signup extends Component {
   state = {
+    firstName: "",
+    lastName: "",
+    organization: "",
     username: "",
     password: "",
     confirmPassword: ""
@@ -15,6 +18,7 @@ class Signup extends Component {
     });
   };
 
+  // change to get request
   handleSubmit = event => {
     event.preventDefault();
     axios.post("/user/", {
@@ -22,14 +26,13 @@ class Signup extends Component {
       password: this.state.password
     })
     .then(response => {
-      console.log(response.data);
-      if (!response.data.error){
-        console.log("successful signup")
-        // this.setState({
-        //   redirectTo: "/login"
-        // })
-      } else {
-        console.log("username already taken")
+      console.log("login response: ");
+      console.log(response);
+      if (!response.status === 200) {
+        this.updateUser({
+          loggedIn: true,
+          username: response.data.username
+        })
       }
     }).catch(error => {
       console.log("signup error: ")
@@ -42,9 +45,19 @@ class Signup extends Component {
       <div>
         <h4>Sign up</h4>
         <form>
-          <input type="text" id="username" placeholder="username" name="username" value={this.state.username} onChange={this.handleChange}/>
+          <input type="text" id="firstname" placeholder="first name" name="firstname" value={this.state.firstName} onChange={this.handleChange}/>
+          <br></br>
+          <input type="text" id="lastname" placeholder="last name" name="lastname" value={this.state.lastName} onChange={this.handleChange}/>
+          <br></br>
+          <input type="text" id="organization" placeholder="organization" name="organization" value={this.state.organization} onChange={this.handleChange}/>
+          <br></br>
+          <input type="text" id="username" placeholder="email address" name="username" value={this.state.username} onChange={this.handleChange}/>
+          <br></br>
           <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-          <button onClick={this.handleSubmit} type="submit" />
+          <br></br>
+          <input placeholder="confirm password" type="confirmpassword" name="confirmpassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
+          <br></br>
+          <button onClick={this.handleSubmit} type="submit">submit</button>
         </form>
       </div>
     )
