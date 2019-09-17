@@ -23,7 +23,10 @@ class Signup extends Component {
     event.preventDefault();
     axios.post("/user/", {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      organization: this.state.organization
     })
     .then(response => {
       console.log("login response: ");
@@ -45,9 +48,9 @@ class Signup extends Component {
       <div>
         <h4>Sign up</h4>
         <form>
-          <input type="text" id="firstname" placeholder="first name" name="firstname" value={this.state.firstName} onChange={this.handleChange}/>
+          <input type="text" id="firstName" placeholder="first name" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
           <br></br>
-          <input type="text" id="lastname" placeholder="last name" name="lastname" value={this.state.lastName} onChange={this.handleChange}/>
+          <input type="text" id="lastName" placeholder="last name" name="lastName" value={this.state.lastName} onChange={this.handleChange}/>
           <br></br>
           <input type="text" id="organization" placeholder="organization" name="organization" value={this.state.organization} onChange={this.handleChange}/>
           <br></br>
@@ -55,7 +58,7 @@ class Signup extends Component {
           <br></br>
           <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
           <br></br>
-          <input placeholder="confirm password" type="confirmpassword" name="confirmpassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
+          <input placeholder="confirm password" type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
           <br></br>
           <button onClick={this.handleSubmit} type="submit">submit</button>
         </form>

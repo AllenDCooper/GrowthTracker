@@ -19,7 +19,7 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    axios.post("/user/login", {
+    axios.post("/user/login/", {
       username: this.state.username,
       password: this.state.password
     })

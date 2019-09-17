@@ -4,7 +4,9 @@ const session = require("express-session");
 // require random string session to create random session secret
 const randomString = require("randomstring");
 // require passport to save user object into session object (req.session) created by express-session
-const passport = require("passport")
+const passport = require("./passport");
+// require mongo store to save session in the database
+const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -17,13 +19,12 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes, both API and view
-app.use(routes)
 
 // add middleware path for session
 app.use(
   session({
     secret: randomString.generate(),
+    store: new MongoStore({ url: process.env.MONGODB_URI || "mongodb://localhost/GTexamples_database" }),
     resave: false,
     saveUnitialized: false
   })
@@ -35,6 +36,8 @@ app.use(passport.initialize());
 // this code reuns deserializeUser from the passport library which checks to see if user is saved in the database, and if so, assigns the user object to req.user
 app.use(passport.session());
 
+// Add routes, both API and view
+app.use(routes)
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/GTexamples_database");

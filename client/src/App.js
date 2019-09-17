@@ -41,6 +41,8 @@ class App extends Component {
   updateUser(userObject) {
     this.setState(userObject)
   }
+  
+  updateUser = this.updateUser.bind(this);
 
   render() {
     return (

@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: { type: String, unique: false, required: false },
-  password: { type: String, unique: false, required: false }
+  password: { type: String, unique: false, required: false },
+  firstName: { type: String },
+  lastName: { type: String },
+  organization: { type: String }
 });
 
 // add methods to userSchema to hash password
