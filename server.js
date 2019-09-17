@@ -21,7 +21,7 @@ app.use(routes)
 // add middleware path for session
 app.use(
   session({
-    secret: randomString.generate();
+    secret: randomString.generate(),
     resave: false,
     saveUnitialized: false
   })
