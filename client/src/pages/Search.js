@@ -3,6 +3,24 @@ import axios from "axios";
 import Nav from "../components/Nav/Nav.js";
 
 class Search extends Component {
+  state = {
+    surveys: []
+  }
+
+  componentDidMount() {
+    this.getSurveys();
+  };
+
+  getSurveys() {
+    axios.get("/api/surveys/").then(response => {
+      console.log("getSurveys response: ");
+      console.log(response);
+      this.setState({
+        surveys: response.data
+      })
+    })
+  }
+
   render() {
     return(
       <div>
