@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Nav from "../components/Nav/Nav.js";
+import { SurveyCard, SurveyCardItem } from "../components/SurveyCard/SurveyCard.js"
 
 class Search extends Component {
   state = {
     surveys: []
   }
-
-  componentDidMount() {
-    this.getSurveys();
-  };
 
   getSurveys() {
     axios.get("/api/surveys/").then(response => {
@@ -21,11 +18,20 @@ class Search extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getSurveys();
+  };
+
   render() {
     return(
       <div>
         <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
         {this.props.loggedIn && <p>Welcome, {this.props.username}! Click to add available growth.trackers.</p>}
+        <SurveyCard>
+          {this.state.surveys.map(item => (
+            <SurveyCardItem key={item.id} name={item.name} desc={item.description} />
+          ))}
+        </SurveyCard>
       </div>
     )
   }

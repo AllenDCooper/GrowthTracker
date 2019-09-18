@@ -56,11 +56,25 @@ class Login extends Component {
           <h1>Welcome to GrowthTracker</h1>
           <Video />
           <h4>Login</h4>
-          <form>
-            <input type="text" id="username" placeholder="email address" name="username" value={this.state.username} onChange={this.handleChange}/>
-            <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-            <button onClick={this.handleSubmit} type="submit">submit</button>
-          </form>
+          <div className="row">
+            <form>
+              <div className="row">
+                  <div className="input-field col 12">
+                    <input type="text" id="username" placeholder="email address" name="username" value={this.state.username} onChange={this.handleChange}/>
+                  </div>
+                <div className="row">
+                  <div className="input-field col 12">
+                    <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="input-field col 12">
+                    <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
           <p>New user? Create an account <a href="/signup">here</a></p>
         </div>
       )
