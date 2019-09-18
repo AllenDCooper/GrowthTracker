@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 class Signup extends Component {
   state = {
+    firstName: "",
+    lastName: "",
+    organization: "",
     username: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    redirectTo: null
   }
 
   handleChange = event => {
@@ -15,19 +20,29 @@ class Signup extends Component {
     });
   };
 
+  // change to get request
   handleSubmit = event => {
+    console.log("sign-up handleSubmit, username: ")
+    console.log(this.state.username);
     event.preventDefault();
     axios.post("/user/", {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      organization: this.state.organization
     })
     .then(response => {
-      console.log(response.data);
-      if (!response.data.error){
-        console.log("successful signup")
-        // this.setState({
-        //   redirectTo: "/login"
-        // })
+      console.log("response");
+      if (!response.data.errmsg) {
+        console.log("successful signup");
+        this.setState({
+          redirectTo: "/dashboard"
+        })
+        this.props.updateUser({
+          loggedIn: true,
+          username: response.data.username
+        })
       } else {
         console.log("username already taken")
       }
@@ -38,16 +53,30 @@ class Signup extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h4>Sign up</h4>
-        <form>
-          <input type="text" id="username" placeholder="username" name="username" value={this.state.username} onChange={this.handleChange}/>
-          <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-          <button onClick={this.handleSubmit} type="submit" />
-        </form>
-      </div>
-    )
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+      return (
+        <div>
+          <h4>Sign up</h4>
+          <form>
+            <input type="text" id="firstName" placeholder="first name" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
+            <br></br>
+            <input type="text" id="lastName" placeholder="last name" name="lastName" value={this.state.lastName} onChange={this.handleChange}/>
+            <br></br>
+            <input type="text" id="organization" placeholder="organization" name="organization" value={this.state.organization} onChange={this.handleChange}/>
+            <br></br>
+            <input type="text" id="username" placeholder="email address" name="username" value={this.state.username} onChange={this.handleChange}/>
+            <br></br>
+            <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+            <br></br>
+            <input placeholder="confirm password" type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
+            <br></br>
+            <button onClick={this.handleSubmit} type="submit">submit</button>
+          </form>
+        </div>
+      )
+    }
   }
 }
 
