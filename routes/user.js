@@ -19,17 +19,23 @@ router.post("/", (req, res) => {
           error: "Sorry, already a user with username" + username
         })
     } else {
-        const newUser = new User({
-          username: username,
-          password: password,
-          firstName: firstName,
-          lastName: lastName,
-          organization: organization
-        })
-        newUser.save((err, savedUser) => {
-          if (err) return res.json(err)
-          res.json(savedUser)
-        })
+      const newUser = new User({
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        organization: organization
+      })
+      newUser.save((err, savedUser) => {
+        if (err) return res.json(err)
+        // use req.login to log user into the account just created
+        req.login(savedUser, function(err) {
+          if (err) {
+            console.log(err);
+          }
+          return res.json(savedUser)
+        });
+      })
     }
   })
 })
