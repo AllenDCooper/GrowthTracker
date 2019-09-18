@@ -8,7 +8,7 @@ function Dashboard(props) {
   return (
     <div>
       <Nav {...props} updateUser={props.updateUser} loggedIn={props.loggedIn} />
-      {props.loggedIn && <p>Welcome, {props.username}!</p>}
+      {props.loggedIn && <p>Welcome, {props.username}! Your user id is: {props.userID}</p>}
     </div>
   )
 }

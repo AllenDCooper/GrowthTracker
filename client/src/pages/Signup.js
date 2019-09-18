@@ -35,13 +35,18 @@ class Signup extends Component {
     .then(response => {
       console.log("response");
       if (!response.data.errmsg) {
+        console.log(response);
         console.log("successful signup");
-        this.setState({
-          redirectTo: "/dashboard"
-        })
         this.props.updateUser({
           loggedIn: true,
-          username: response.data.username
+          username: response.data.username,
+          userID: response.data._id,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          organization: response.data.organization
+        })
+        this.setState({
+          redirectTo: "/dashboard"
         })
       } else {
         console.log("username already taken")
@@ -57,7 +62,7 @@ class Signup extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-        <div>
+        <div className="container">
           <h4>Sign up</h4>
           <form>
             <input type="text" id="firstName" placeholder="first name" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
@@ -72,7 +77,7 @@ class Signup extends Component {
             <br></br>
             <input placeholder="confirm password" type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
             <br></br>
-            <button onClick={this.handleSubmit} type="submit">submit</button>
+            <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
           </form>
         </div>
       )
