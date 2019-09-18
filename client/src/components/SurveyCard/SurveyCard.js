@@ -16,6 +16,7 @@ export function SurveyCardItem(props) {
           <span className="card-title">{props.name}</span>
           <p>{props.desc}</p>
         </div>
+        <a className="btn-floating waves-effect halfway-fab waves-light red"><i className="material-icons">+</i></a>
         <div className="card-action">
           <a href="#">This is a link</a>
           <a href="#">This is a link</a>

@@ -52,30 +52,32 @@ class Login extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-        <div>
-          <h1>Welcome to GrowthTracker</h1>
+        <div className="container">
+          <h1>growth.tracker</h1>
           <Video />
-          <h4>Login</h4>
           <div className="row">
-            <form>
-              <div className="row">
-                  <div className="input-field col 12">
+            <div className="col s12">
+              <h4>login</h4>
+              <form>
+                <div className="row">
+                  <div className="input-field col s6">
                     <input type="text" id="username" placeholder="email address" name="username" value={this.state.username} onChange={this.handleChange}/>
                   </div>
+                </div>
                 <div className="row">
-                  <div className="input-field col 12">
+                  <div className="input-field col s6">
                     <input placeholder="password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col 12">
+                  <div className="input-field col s6">
                     <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+              <p>New user? Create an account <a href="/signup">here</a></p>
+            </div>
           </div>
-          <p>New user? Create an account <a href="/signup">here</a></p>
         </div>
       )
     }
