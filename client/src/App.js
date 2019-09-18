@@ -10,7 +10,11 @@ import Search from "./pages/Search.js";
 class App extends Component {
   state = {
     loggedIn: false,
-    username: null
+    firstName: null,
+    lastName: null,
+    organization: null,
+    username: null,
+    userID: null,
   };
 
   // gets user on mount
@@ -28,6 +32,7 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
+          userID: response.data.user._id,
           firstName: response.data.user.firstName,
           lastName: response.data.user.lastName
         })
@@ -64,11 +69,11 @@ class App extends Component {
           <Route 
             exact path="/dashboard" 
             // this will pass the updateUser function as props into the Login component that is called in this route
-            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username}/>}
+            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID}/>}
           />
           <Route 
             exact path="/search"
-            render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username}/>}
+            render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID}/>}
           />
         </div>
       </Router>

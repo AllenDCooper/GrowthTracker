@@ -52,9 +52,13 @@ router.post("/login/",
   (req, res) => {
     console.log("logged in", req.user);
     var userInfo = {
-      username: req.user.username
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      organization: req.user.organization,
+      username: req.user.username,
+      userID: req.user._id
     }
-    res.send(userInfo);
+    res.json(userInfo);
   }
 )
 

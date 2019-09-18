@@ -35,13 +35,18 @@ class Signup extends Component {
     .then(response => {
       console.log("response");
       if (!response.data.errmsg) {
+        console.log(response);
         console.log("successful signup");
-        this.setState({
-          redirectTo: "/dashboard"
-        })
         this.props.updateUser({
           loggedIn: true,
-          username: response.data.username
+          username: response.data.username,
+          userID: response.data._id,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          organization: response.data.organization
+        })
+        this.setState({
+          redirectTo: "/dashboard"
         })
       } else {
         console.log("username already taken")

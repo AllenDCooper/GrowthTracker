@@ -30,7 +30,11 @@ class Login extends Component {
         // update App.js state
         this.props.updateUser({
           loggedIn: true,
-          username: response.data.username
+          username: response.data.username,
+          userID: response.data.userID,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          organization: response.data.organization
         })
         // update the state to redirect to home
         this.setState({

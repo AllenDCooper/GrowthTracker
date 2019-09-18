@@ -3,7 +3,7 @@ const passport = require("passport");
 const LocalStrategy = require("./localStrategy.js");
 const User = require ("../models/user");
 
-// called on login, saves the ide to the session req.session.passport.user = { id: ".."}
+// called on login, saves the id to the session req.session.passport.user = { id: ".."}
 passport.serializeUser((user, done) => {
   console.log("---serializeUser called, user: ");
   console.log(user);
