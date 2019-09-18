@@ -10,17 +10,13 @@ export function SurveyCard({children}) {
 
 export function SurveyCardItem(props) {
   return(
-    <div className="col s12 m6" key={props.key}>
+    <div className="col s12 m6" key={props.id}>
       <div className="card blue-grey darken-1">
         <div className="card-content white-text">
           <span className="card-title">{props.name}</span>
           <p>{props.desc}</p>
         </div>
-        <a className="btn-floating waves-effect halfway-fab waves-light red"><i className="material-icons">+</i></a>
-        <div className="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
+        <a className="btn-floating waves-effect halfway-fab waves-light red"><i data-value={props.id} onClick={props.saveFunction} className="material-icons">+</i></a>
       </div>
     </div>
   )

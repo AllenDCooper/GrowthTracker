@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav/Nav.js";
 import { SurveyCard, SurveyCardItem } from "../components/SurveyCard/SurveyCard.js"
 
 class Search extends Component {
   state = {
-    surveys: []
+    surveys: [],
+    redirectTo: null
   }
 
   getSurveys() {
@@ -15,6 +17,7 @@ class Search extends Component {
       this.setState({
         surveys: response.data
       })
+      console.log(this.state.surveys)
     })
   }
 
@@ -22,18 +25,38 @@ class Search extends Component {
     this.getSurveys();
   };
 
+  // function to save survey to user document when clicked
+  handleSaveSurvey = event => {
+    event.preventDefault();
+    console.log(event.target.getAttribute('data-value'));
+    axios.put("/users/", {
+      userID: this.props.userID,
+      surveyID: event.target.getAttribute('data-value')
+    }).then(response => {
+      console.log("saveSurveys response: ")
+      console.log(response);
+      this.setState({
+        redirectTo: "/dashboard"
+      })
+    })
+  }
+
   render() {
-    return(
-      <div>
-        <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
-        {this.props.loggedIn && <p>Welcome, {this.props.username}! Click to add available growth.trackers.</p>}
-        <SurveyCard>
-          {this.state.surveys.map(item => (
-            <SurveyCardItem key={item.id} name={item.name} desc={item.description} />
-          ))}
-        </SurveyCard>
-      </div>
-    )
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
+      return(
+        <div>
+          <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
+          {this.props.loggedIn && <p>Welcome, {this.props.username}! Click to add available growth.trackers.</p>}
+          <SurveyCard>
+            {this.state.surveys.map(item => (
+              <SurveyCardItem saveFunction={this.handleSaveSurvey} id={item._id} name={item.name} desc={item.description} />
+            ))}
+          </SurveyCard>
+        </div>
+      )
+    }
   }
 }
 
