@@ -56,7 +56,10 @@ class App extends Component {
             // this will pass the updateUser function as props into the Login component that is called in this route
             render={(props) => <Login {...props} updateUser={this.updateUser}/>}
           />
-          <Route exact path="/signup" component={Signup}/>
+          <Route
+            exact path="/signup"
+            render={(props) => <Signup {...props} updateUser={this.updateUser}/>}
+          />
           <Route 
             exact path="/dashboard" 
             // this will pass the updateUser function as props into the Login component that is called in this route
