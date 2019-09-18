@@ -42,7 +42,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to GrowthTracker</h1>
+        <h1>growth.tracker | Learn how you learn</h1>
         <Video />
         <h4>Sign up</h4>
         <form>
