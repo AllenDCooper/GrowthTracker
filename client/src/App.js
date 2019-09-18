@@ -5,6 +5,7 @@ import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
 // import additional pages as created
 import Dashboard from "./pages/Dashboard.js";
+import Search from "./pages/Search.js";
 
 class App extends Component {
   state = {
@@ -64,6 +65,10 @@ class App extends Component {
             exact path="/dashboard" 
             // this will pass the updateUser function as props into the Login component that is called in this route
             render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username}/>}
+          />
+          <Route 
+            exact path="/search"
+            render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username}/>}
           />
         </div>
       </Router>
