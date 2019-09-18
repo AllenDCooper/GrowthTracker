@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import Video from "../components/Video.js"
+import Video from "../components/Video/Video.js"
 
 class Login extends Component {
   state = {

@@ -7,7 +7,13 @@ const userSchema = new Schema({
   password: { type: String, unique: false, required: false },
   firstName: { type: String },
   lastName: { type: String },
-  organization: { type: String }
+  organization: { type: String },
+  savedSurveys: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: "Survey"
+    }
+  ]
 });
 
 // add methods to userSchema to hash password
