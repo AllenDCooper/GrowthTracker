@@ -22,5 +22,11 @@ module.exports = {
         })
       }
     })
+  },
+  findById: function(req, res) {
+    db.User
+    .findOne({ _id: req.params.id })
+    .then(userDocument => res.json(userDocument))
+    .catch(err => res.status(422).json(err))
   }
-}   
+};
