@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav/Nav.js"
+import { SurveyCard, SurveyCardItem } from "../components/SurveyCard/SurveyCard.js"
 
 class Dashboard extends Component {
   state = {
@@ -30,6 +31,11 @@ class Dashboard extends Component {
       <div>
       <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
       {this.props.loggedIn && <p>Welcome, {this.props.username}! Your user id is: {this.props.userID}</p>}
+      <SurveyCard>
+        {this.state.savedSurveys.map(item => (
+          <SurveyCardItem id={item._id} name={item.name} desc={item.description} />
+        ))}
+      </SurveyCard>
     </div>
     )
   }
