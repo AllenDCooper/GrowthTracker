@@ -30,11 +30,13 @@ class Signup extends Component {
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      organization: this.state.organization
+      organization: this.state.organization,
+      confirmPassword: this.state.confirmPassword
     })
     .then(response => {
       console.log("response");
-      if (!response.data.errmsg) {
+      console.log(response)
+      if (!response.data.errors) {
         console.log(response);
         console.log("successful signup");
         this.props.updateUser({
@@ -49,7 +51,7 @@ class Signup extends Component {
           redirectTo: "/dashboard"
         })
       } else {
-        console.log("username already taken")
+        console.log("error")
       }
     }).catch(error => {
       console.log("signup error: ")
