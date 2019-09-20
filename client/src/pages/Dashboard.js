@@ -16,7 +16,7 @@ class Dashboard extends Component {
     return(
       <div>
         <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
-        <div className="container" style={{position: 'relative'}}>
+        <div className="container">
           {this.props.loggedIn && <p>Welcome, {this.props.username}! Your user id is: {this.props.userID}</p>}
           <SurveyUserCard>
             {this.props.savedSurveys.map(survey => (
