@@ -22,5 +22,17 @@ module.exports = {
         })
       }
     })
+  },
+  findById: function(req, res) {
+    db.User
+    .findOne({ _id: req.params.id }).populate("savedSurveys")
+    .then(userDocument => res.json(userDocument))
+    .catch(err => res.status(422).json(err))
+  },
+  update: function(req, res) {
+    db.User
+    .findOneAndUpdate({ _id: req.body.userID }, {$pull: {savedSurveys: req.body.surveyID}} )
+    .then(userDocument => res.json(userDocument))
+    .catch(err => res.status(422).json(err));
   }
-}   
+};

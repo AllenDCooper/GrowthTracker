@@ -29,7 +29,7 @@ class Search extends Component {
   handleSaveSurvey = event => {
     event.preventDefault();
     console.log(event.target.getAttribute('data-value'));
-    axios.put("/users/", {
+    axios.put("/user/", {
       userID: this.props.userID,
       surveyID: event.target.getAttribute('data-value')
     }).then(response => {
@@ -38,6 +38,7 @@ class Search extends Component {
       this.setState({
         redirectTo: "/dashboard"
       })
+      window.location.reload()
     })
   }
 

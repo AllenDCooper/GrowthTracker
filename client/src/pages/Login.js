@@ -40,6 +40,7 @@ class Login extends Component {
         this.setState({
           redirectTo: "/dashboard"
         })
+        window.location.reload()
       }
     }).catch(error => {
       console.log("login error: ")
