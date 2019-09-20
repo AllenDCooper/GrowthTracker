@@ -4,6 +4,7 @@ import axios from "axios";
 import Nav from "../components/Nav/Nav.js"
 import SurveyUserCard from "../components/SurveyUserCard/SurveyUserCard";
 import SurveyUserCardItem from "../components/SurveyUserCardItem/SurveyUserCardItem";
+import QuestionCard from "../components/QuestionCard/QuestionCard.js"
 
 class Dashboard extends Component {
 
@@ -13,8 +14,14 @@ class Dashboard extends Component {
         <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
         {this.props.loggedIn && <p>Welcome, {this.props.username}! Your user id is: {this.props.userID}</p>}
         <SurveyUserCard>
-          {this.props.savedSurveys.map(item => (
-            <SurveyUserCardItem id={item._id} name={item.name} desc={item.description} data={item.items} userID={this.props.userID}/>
+          {this.props.savedSurveys.map(survey => (
+            <SurveyUserCardItem id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID}>
+              {survey.item.map(question => (
+                <QuestionCard
+                  text={question}
+                />
+              ))}
+            </SurveyUserCardItem>
           ))}
         </SurveyUserCard>
       </div>
