@@ -6,7 +6,7 @@ class SurveyUserCard extends Component {
 
   render() {
     return(
-      <div className="row">
+      <div>
         {this.props.children}
       </div>
     )
