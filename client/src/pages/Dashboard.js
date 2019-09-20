@@ -7,6 +7,20 @@ import SurveyUserCardItem from "../components/SurveyUserCardItem/SurveyUserCardI
 import QuestionCard from "../components/QuestionCard/QuestionCard.js"
 
 class Dashboard extends Component {
+  constructor () {
+    super();
+    this.handleAnswers = this.handleAnswers.bind(this);
+  }
+
+  state = {
+    answerArr: []
+  }
+
+  handleAnswers(answer) {
+    // pushes value into answer array
+    this.state.answerArr.push(answer)
+    console.log(this.state.answerArr)
+  }
 
   hideCard = () => {
     this.parentNode.style.display = 'none'
@@ -26,6 +40,7 @@ class Dashboard extends Component {
                     text={question}
                     hideCard={this.hideCard}
                     index={index}
+                    handler={this.handleAnswers}
                   />
                 ))}
               </SurveyUserCardItem>

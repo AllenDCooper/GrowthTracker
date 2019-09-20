@@ -10,13 +10,22 @@ import React, { Component } from "react";
 class QuestionCard extends Component {
   state = {
     isHidden: false,
+    answer: null
   }
 
   handleClick = () => {
     this.setState({
       isHidden: true
     });
+    this.props.handler(this.state.answer)
   };
+
+  handleAnswerClick = (event) => {
+    this.setState({
+      answer: event.target.value
+    })
+    console.log(this.state.answer);
+  }
 
   render() {
     if (this.state.isHidden) {
@@ -32,37 +41,37 @@ class QuestionCard extends Component {
             <form>
               <p>
                 <label>
-                  <input value="6" name="group1" type="radio" />
+                  <input value="6" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Strongly Agree</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input value="5" name="group1" type="radio" />
+                  <input value="5" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Agree</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input value="4" name="group1" type="radio" />
+                  <input value="4" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Somewhat Agree</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input value="3" name="group1" type="radio" />
+                  <input value="3" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Somewhat Disagree</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input value="2" name="group1" type="radio" />
+                  <input value="2" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Disagree</span>
                 </label>
               </p>
               <p>
                 <label>
-                  <input value="1" name="group1" type="radio" />
+                  <input value="1" name="group1" type="radio" onChange={this.handleAnswerClick} />
                   <span>Strongly Disagree</span>
                 </label>
               </p>
