@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 
+// let questionCardStyle = {
+//   position: "absolute",
+//   top: "0px",
+//   right: "0px",
+//   "z-index": (this.props.index - 1)
+// }
+
 class QuestionCard extends Component {
   state = {
-    isHidden: false
+    isHidden: false,
   }
 
   handleClick = () => {
@@ -16,7 +23,7 @@ class QuestionCard extends Component {
       return(null)
     } else {
       return(
-        <div className="col s12 m6 offset-m3" key={this.props.index} style={{position: "absolute"}, {left: 0}, {top: 0}, {"z-index": this.props.index}}>
+        <div className="col s12 m6 offset-m3" key={this.props.index} data-value={this.props.index} style={{ position: 'absolute', zIndex: -this.props.index }}>
           <div className="card medium blue-grey darken-1">
             <div className="card-content white-text">
               <span className="card-title"></span>
