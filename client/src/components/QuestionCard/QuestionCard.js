@@ -10,14 +10,16 @@ import React, { Component } from "react";
 class QuestionCard extends Component {
   state = {
     isHidden: false,
-    answer: null
+    answer: null,
+    surveyID: this.props.id,
   }
 
   handleClick = () => {
     this.setState({
       isHidden: true
     });
-    this.props.handler(this.state.answer)
+    this.props.handler(this.state.answer);
+    this.props.getSurveyID(this.props.id);
   };
 
   handleAnswerClick = (event) => {

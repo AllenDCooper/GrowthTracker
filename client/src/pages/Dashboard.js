@@ -11,29 +11,47 @@ class Dashboard extends Component {
   constructor () {
     super();
     this.handleAnswers = this.handleAnswers.bind(this);
+    this.getSurveyID = this.getSurveyID.bind(this);
+    this.submitAnswers = this.submitAnswers.bind(this);
   }
 
   state = {
     answerArr: [],
     percentileRank: null,
     activeSurveyID: null,
-    totalRawScore: this.getTotalRawScore(this.state.answerArr)
+    totalRawScore: null,
   }
+  
+  updateRawScore() {
+    this.setState({
+      totalRawScore: this.getTotalRawScore(this.state.answerArr)
+    });
+    console.log(this.state.totalRawScore);
+  };
 
   handleAnswers(answer) {
     // pushes value into answer array
-    this.state.answerArr.push(answer)
-    console.log(this.state.answerArr)
+    this.state.answerArr.push(parseInt(answer));
+    console.log(this.state.answerArr);
+    this.updateRawScore();
+  }
+
+  getSurveyID(surveyID) {
+    this.setState({
+      activeSurveyID: surveyID
+    })
+    console.log(this.state.activeSurveyID) 
   }
 
   hideCard = () => {
     this.parentNode.style.display = 'none'
   }
 
-  getTotalRawScore = arr => arr.reduce((a,b) => a + b, 0)
+  getTotalRawScore = arr => {
+    return arr.reduce((a,b) => a + b, 0)
+  }
 
   submitAnswers(answerArr) {
-    const totalRawScore = arr => arr.reduce((a,b) => a + b, 0)
     axios.post("api/scores/", {
       rawScoreSeries: this.state.answerArr,
       totalRawScore: this.state.totalRawScore,
@@ -88,10 +106,12 @@ class Dashboard extends Component {
                       hideCard={this.hideCard}
                       index={index}
                       handler={this.handleAnswers}
+                      getSurveyID={this.getSurveyID}
+                      id={survey._id}
                     />
                   ))}
+                  <ResultsCard submitAnswers={this.submitAnswers}/>
                 </SurveyUserCardItem>
-                <ResultsCard/>
               </div>
             ))}
           </SurveyUserCard>
