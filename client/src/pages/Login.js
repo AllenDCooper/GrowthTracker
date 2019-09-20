@@ -49,7 +49,7 @@ class Login extends Component {
     } else {
       return (
         <div>
-          <h1>Welcome to GrowthTracker</h1>
+          <h1>growth.tracker | Learn how you learn</h1>
           <Video />
           <h4>Login</h4>
           <form>
