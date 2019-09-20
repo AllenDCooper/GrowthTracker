@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const surveySeeds = require("./surveys.json")
 
 // This file empties the Examples collection and inserts the examples below
 
@@ -8,17 +9,9 @@ mongoose.connect(
   "mongodb://localhost/GTexamples_database"
 );
 
-const exampleSeed = [
-  {
-    body:
-      "Test",
-    date: new Date(Date.now())
-  }
-];
-
-db.Example
+db.Survey
   .remove({})
-  .then(() => db.Example.collection.insertMany(exampleSeed))
+  .then(() => db.Survey.collection.insertMany(surveySeeds))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
@@ -27,3 +20,4 @@ db.Example
     console.error(err);
     process.exit(1);
   });
+

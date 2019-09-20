@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
 // import additional pages as created
 import Dashboard from "./pages/Dashboard.js";
+import Search from "./pages/Search.js";
 
 class App extends Component {
   state = {
     loggedIn: false,
-    username: null
+    firstName: null,
+    lastName: null,
+    organization: null,
+    username: null,
+    userID: null,
+    savedSurveys: []
   };
 
   // gets user on mount
@@ -19,7 +25,7 @@ class App extends Component {
 
   // function to get current user saved in the session
   getUser() {
-    Axios.get("/user/").then(response => {
+    axios.get("/user/").then(response => {
       console.log("Get user response: ")
       console.log(response.data)
       if(response.data.user) {
@@ -27,9 +33,12 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           username: response.data.user.username,
+          userID: response.data.user._id,
           firstName: response.data.user.firstName,
           lastName: response.data.user.lastName
         })
+        console.log(this.state);
+        this.getSurveys()
       } else {
         console.log("Get user: no user");
         this.setState({
@@ -38,6 +47,21 @@ class App extends Component {
         })
       }
     });
+  };
+
+  getSurveys() {
+    console.log("getSurveys request:")
+    console.log(this.state.userID);
+    axios.get("api/users/" + this.state.userID, {
+      userID: this.state.userID
+    }).then(response => {
+      console.log("getSurveys from user response: ")
+      console.log(response.data)
+      this.setState({
+        savedSurveys: response.data.savedSurveys
+      })
+    })
+    .catch(err => console.log(err));
   };
 
   // this function will save the userObject into the state
@@ -63,7 +87,11 @@ class App extends Component {
           <Route 
             exact path="/dashboard" 
             // this will pass the updateUser function as props into the Login component that is called in this route
-            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username}/>}
+            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} getUser={this.getUser} savedSurveys={this.state.savedSurveys}/>}
+          />
+          <Route 
+            exact path="/search"
+            render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} />}
           />
         </div>
       </Router>

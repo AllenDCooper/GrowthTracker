@@ -30,21 +30,28 @@ class Signup extends Component {
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      organization: this.state.organization
+      organization: this.state.organization,
+      confirmPassword: this.state.confirmPassword
     })
     .then(response => {
       console.log("response");
-      if (!response.data.errmsg) {
+      console.log(response)
+      if (!response.data.errors) {
+        console.log(response);
         console.log("successful signup");
+        this.props.updateUser({
+          loggedIn: true,
+          username: response.data.username,
+          userID: response.data._id,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          organization: response.data.organization
+        })
         this.setState({
           redirectTo: "/dashboard"
         })
-        this.props.updateUser({
-          loggedIn: true,
-          username: response.data.username
-        })
       } else {
-        console.log("username already taken")
+        console.log("error")
       }
     }).catch(error => {
       console.log("signup error: ")
@@ -57,7 +64,7 @@ class Signup extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-        <div>
+        <div className="container">
           <h4>Sign up</h4>
           <form>
             <input type="text" id="firstName" placeholder="first name" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
@@ -72,7 +79,7 @@ class Signup extends Component {
             <br></br>
             <input placeholder="confirm password" type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
             <br></br>
-            <button onClick={this.handleSubmit} type="submit">submit</button>
+            <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
           </form>
         </div>
       )
