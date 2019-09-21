@@ -49,17 +49,12 @@ class Login extends Component {
   }
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
-    } else {
+    // if (this.state.redirectTo) {
+    //   return <Redirect to={{ pathname: this.state.redirectTo }} />
+    // } else {
       return (
-<<<<<<< HEAD
-        <div>
-          <h1>growth.tracker | Learn how you learn</h1>
-=======
         <div className="container">
           <h1>growth.tracker</h1>
->>>>>>> master
           <Video />
           <div className="row">
             <div className="col s12">
@@ -88,6 +83,6 @@ class Login extends Component {
       )
     }
   }
-}
+// }
 
 export default Login;

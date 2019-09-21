@@ -13,16 +13,18 @@ const Video = () => {
         minHeight: "100%",
         zIndex: -2,
     };
-    
-return (
-    <video
-    src={"/assets/Wall-Sketching.mp4"}
-    autoPlay={true}
-    loop={true}
-    style={style}
-    >
-    </video>
-);
+
+    return (
+        <video
+            src={"/assets/Wall-Sketching.mp4"}
+            type={"video/mp4"}
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            style={style}
+        >
+        </video>
+    );
 }
 
 export default Video;
