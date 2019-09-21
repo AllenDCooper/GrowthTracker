@@ -34,5 +34,11 @@ module.exports = {
     .findOneAndUpdate({ _id: req.body.userID }, {$pull: {savedSurveys: req.body.surveyID}} )
     .then(userDocument => res.json(userDocument))
     .catch(err => res.status(422).json(err));
+  },
+  updateScore: function(req, res) {
+    db.User
+    .findOneAndUpdate({ _id: req.body.userID }, {$push: {scores: req.body.scoresID}} )
+    .then(userDocument => res.json(userDocument))
+    .catch(err => res.status(422).json(err));
   }
 };

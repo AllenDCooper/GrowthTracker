@@ -13,6 +13,12 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Survey"
     }
+  ], 
+  scores: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: "Score"
+    }
   ]
 });
 

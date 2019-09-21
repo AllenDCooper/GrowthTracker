@@ -52,6 +52,7 @@ class Dashboard extends Component {
   }
 
   submitAnswers() {
+    // create new score document in the scores collection
     axios.post("api/scores/", {
       rawScoreSeries: this.state.answerArr,
       totalRawScore: this.state.totalRawScore,
@@ -65,7 +66,8 @@ class Dashboard extends Component {
         percentileRank: response.data.percentileRank
       })
       console.log(this.state.percentileRank)
-      axios.put("/user/", {
+      // update user document with score
+      axios.put("api/users/scores/", {
         userID: this.props.userID,
         scoresID: response.data._id 
       })
@@ -75,6 +77,7 @@ class Dashboard extends Component {
       .catch(err => {
         console.log(err)
       });
+      // update 
       axios.put("/api/surveys/" + this.active.surveyID, {
         rawScore: this.state.totalRawScore
       }).then(response => {
