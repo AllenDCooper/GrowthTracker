@@ -51,7 +51,7 @@ class Dashboard extends Component {
     return arr.reduce((a,b) => a + b, 0)
   }
 
-  submitAnswers(answerArr) {
+  submitAnswers() {
     axios.post("api/scores/", {
       rawScoreSeries: this.state.answerArr,
       totalRawScore: this.state.totalRawScore,
