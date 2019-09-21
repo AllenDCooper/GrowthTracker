@@ -7,7 +7,13 @@ module.exports = {
       .find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  update: function(req, res) {
+    db.Survey
+      .findOneAndUpdate({ _id: req.params.id }, {$push: {rawScores: req.body.rawScore}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 //   findById: function(req, res) {
 //     db.Survey
 //       .findById(req.params.id)
@@ -17,12 +23,6 @@ module.exports = {
 //   create: function(req, res) {
 //     db.Survey
 //       .create(req.body)
-//       .then(dbModel => res.json(dbModel))
-//       .catch(err => res.status(422).json(err));
-//   },
-//   update: function(req, res) {
-//     db.Survey
-//       .findOneAndUpdate({ _id: req.params.id }, req.body)
 //       .then(dbModel => res.json(dbModel))
 //       .catch(err => res.status(422).json(err));
 //   },

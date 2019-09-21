@@ -6,6 +6,10 @@ router.route("/")
     // .get(usersController.findAll)
     .put(usersController.update)
 
+router.route("/scores/")
+// .get(usersController.findAll)
+  .put(usersController.updateScore)
+
 // Matches with "/api/users/:id"
 router
   .route("/:id")
