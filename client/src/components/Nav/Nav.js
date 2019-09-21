@@ -37,6 +37,7 @@ class Nav extends Component {
           <ul>
             <li><a href="/dashboard">dashboard</a></li>
             <li><a href="/search">search</a></li>
+            <li><a href="/create">create</a></li>
             <li><a id="logout" onClick={this.handleLogout} href="#">logout</a></li>
           </ul>
         </nav>
