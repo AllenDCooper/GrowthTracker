@@ -29,11 +29,9 @@ class Create extends Component {
                 <input id="survey_title" name="surveyTitle" type="text" className="validate" />
                 <label for="survey_title">Survey Title</label>
               </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <textarea id="textarea1" name="surveyDescription" className="materialize-textarea"></textarea>
-                  <label for="textarea1">Description</label>
-                </div>
+              <div className="input-field col s12">
+                <textarea id="textarea1" name="surveyDescription" className="materialize-textarea"></textarea>
+                <label for="textarea1">Description</label>
               </div>
             </form>
           </div>
