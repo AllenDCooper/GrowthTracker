@@ -6,6 +6,7 @@ import Login from "./pages/Login.js";
 // import additional pages as created
 import Dashboard from "./pages/Dashboard.js";
 import Search from "./pages/Search.js";
+import Create from "./pages/Create.js";
 
 class App extends Component {
   state = {
@@ -92,6 +93,10 @@ class App extends Component {
           <Route 
             exact path="/search"
             render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} />}
+          />
+          <Route 
+            exact path="/create"
+            render={(props) => <Create {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} />}
           />
         </div>
       </Router>
