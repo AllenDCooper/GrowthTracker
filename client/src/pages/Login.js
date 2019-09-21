@@ -49,9 +49,9 @@ class Login extends Component {
   }
 
   render() {
-    // if (this.state.redirectTo) {
-    //   return <Redirect to={{ pathname: this.state.redirectTo }} />
-    // } else {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    } else {
       return (
         <div className="container">
           <h1>growth.tracker</h1>
@@ -76,13 +76,13 @@ class Login extends Component {
                   </div>
                 </div>
               </form>
-              <p>New user? Create an account <a href="/signup">here</a></p>
+              <p>New user? Create an account <a href="/signup">here</a>.</p>
             </div>
           </div>
         </div>
       )
     }
   }
-// }
+}
 
 export default Login;
