@@ -5,6 +5,9 @@ const surveysController = require("../../controllers/surveysController.js");
 router.route("/")
   .get(surveysController.findAll)
 
+  router.route("/:id")
+  .put(surveysController.update)
+
 // Matches with "/api/surveys/:id"
 // router
 //   .route("/:id")

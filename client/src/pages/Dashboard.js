@@ -77,8 +77,8 @@ class Dashboard extends Component {
       .catch(err => {
         console.log(err)
       });
-      // update 
-      axios.put("/api/surveys/" + this.active.surveyID, {
+      // update survey with total raw score
+      axios.put("/api/surveys/" + this.state.activeSurveyID, {
         rawScore: this.state.totalRawScore
       }).then(response => {
         console.log(response);
