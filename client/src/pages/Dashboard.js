@@ -6,6 +6,7 @@ import SurveyUserCard from "../components/SurveyUserCard/SurveyUserCard";
 import SurveyUserCardItem from "../components/SurveyUserCardItem/SurveyUserCardItem";
 import QuestionCard from "../components/QuestionCard/QuestionCard.js"
 import ResultsCard from "../components/ResultsCard/ResultsCard.js"
+import { set } from "mongoose";
 
 class Dashboard extends Component {
   constructor () {
@@ -51,6 +52,33 @@ class Dashboard extends Component {
     return arr.reduce((a,b) => a + b, 0)
   }
 
+  // function that returns the percentile rank of a raw score value given an array of historical raw score values
+  calcPercentileRank(value, arr) {
+    // sort array in ascending order
+    const sortArr = arr.sort(function(a, b){return a-b});
+    console.log(sortArr);
+    // set variables for value frequency
+    let count = 0;
+    // loop through array and count scores at or below the value
+    let i = 0;
+    while (sortArr[i] <= value) {
+        count++
+        i++
+      }
+    // calculate the percentile rank
+    let rawRank = count/sortArr.length
+    // round the rank to nearest integer
+    let roundedRank = Math.round(rawRank * 100)
+    // if 0 or 100, round to 1 and 99 respectively
+    if (roundedRank === 0) {
+        roundedRank = 1;
+    } else if (roundedRank === 100) {
+        roundedRank = 99;
+    }
+    console.log(roundedRank + "%");
+    return (roundedRank);
+  }
+
   submitAnswers() {
     // create new score document in the scores collection
     axios.post("api/scores/", {
@@ -82,7 +110,11 @@ class Dashboard extends Component {
         rawScore: this.state.totalRawScore
       }).then(response => {
         console.log(response);
-      })
+          this.setState({
+            percentileRank: this.calcPercentileRank(this.state.totalRawScore, response.data.rawScores)
+          })
+        }
+      )
       .catch(err => {
         console.log(err)
       })
@@ -113,7 +145,7 @@ class Dashboard extends Component {
                       id={survey._id}
                     />
                   ))}
-                  <ResultsCard submitAnswers={this.submitAnswers}/>
+                  <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/>
                 </SurveyUserCardItem>
               </div>
             ))}
