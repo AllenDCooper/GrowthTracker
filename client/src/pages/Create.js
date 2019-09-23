@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from "../components/Nav/Nav.js"
 
+const formStyle = {
+  marginTop: "15px",
+}
+
 class Create extends Component {
   state = {
     surveyTitle: "",
@@ -24,7 +28,7 @@ class Create extends Component {
         <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
         <div className="container">
           <div className="row">
-            <form className="col s12">
+            <form className="col s12" style={formStyle}>
               <div className="input-field col s12">
                 <input id="survey_title" name="surveyTitle" type="text" data-length="20" className="validate" />
                 <label for="survey_title">Survey Title</label>
@@ -38,13 +42,14 @@ class Create extends Component {
                 <input id="email_inline" type="email" className="validate" />
                 <label for="email_inline">Question 1</label>
               </div>
+              <button className="btn" onClick={this.handleSubmit} type="submit">create survey</button>
             </form>
           </div>
-          </div>
         </div>
-        )
-      }
-    
-    }
-    
+      </div>
+    )
+  }
+
+}
+
 export default Create;

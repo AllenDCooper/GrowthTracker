@@ -13,6 +13,14 @@ class Signup extends Component {
     redirectTo: null
   }
 
+  validateName = name => {
+    const regex = /[A-Za-z]{3,}/;
+
+    return !regex.test(name)
+      ? "The name must contain at least three letters. Numbers and special characters are not allowed."
+      : "";
+  };
+  
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({
