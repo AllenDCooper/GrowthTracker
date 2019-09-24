@@ -18,21 +18,34 @@ class Create extends Component {
     event.preventDefault();
     this.state.iterator++;
     const questionDiv = this.refs.questionDiv;
-    questionDiv.innerHTML += '<div class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question' + this.state.iterator + '" ref="question' + this.state.iterator + '" type="text" class="validate" required /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>';
+    questionDiv.innerHTML += '<div ref="questionHTML" class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question' + this.state.iterator + '" ref="question' + this.state.iterator + '" type="text" class="validate" required /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>';
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.state.surveyTitle = this.refs.surveyTitle.value;
     this.state.surveyDescription = this.refs.surveyDescription.value;
+    console.log(this.refs.surveyDescription.value);
     this.state.questions.push(this.refs.question1.value);
+    console.log(this.refs.question1.value);
 
-    console.log(this.refs.questionDiv);
+    for ( let i = 1; i < this.state.iterator; i++) {
+      let questionRef = "question" + i;
+      console.log(questionRef)
+      let questionElement = this.refs.question1;
+      console.log(questionElement);
+      this.state.questions.push(questionElement.value);
+    }
 
-    this.refs.questionDiv.forEach(element => {
-      let questionText = element.querySelector("input").getAttribute("ref");
-      this.state.questions.push(questionText);
-    });
+    //let questionHTML = this.refs.questionDiv
+    //console.log(typeof questionHTML)
+    //console.log(questionHTML)
+    // this.refs.questionDiv;
+
+    // this.refs.questionDiv.forEach(element => {
+    //   let questionText = element.querySelector("input").getAttribute("ref");
+    //   this.state.questions.push(questionText);
+    // });
 
     console.log(this.state);
   }
@@ -53,7 +66,7 @@ class Create extends Component {
                 <label for="surveyDescription">Description</label>
               </div>
               <div ref="questionDiv">
-                <div className="input-field inline col s12">
+                <div ref="questionHTML" className="input-field inline col s12">
                   <i class="material-icons prefix">mode_edit</i>
                   <input id="question1" ref="question1" type="text" className="validate" required />
                   <label for="question1">Question 1</label>
