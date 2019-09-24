@@ -10,16 +10,7 @@ class Create extends Component {
   state = {
     surveyTitle: "",
     surveyDescription: "",
-    question1: "",
-    question2: "",
-    question3: "",
-    question4: "",
-    question5: "",
-    question6: "",
-    question7: "",
-    question8: "",
-    question9: "",
-    question10: "",
+    questions: [],
     iterator: 1,
   }
 
@@ -27,7 +18,23 @@ class Create extends Component {
     event.preventDefault();
     this.state.iterator++;
     const questionDiv = this.refs.questionDiv;
-    questionDiv.innerHTML += '<div class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question_inline" type="text" class="validate" /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>'
+    questionDiv.innerHTML += '<div class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question' + this.state.iterator + '" ref="question' + this.state.iterator + '" type="text" class="validate" required /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>';
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.state.surveyTitle = this.refs.surveyTitle.value;
+    this.state.surveyDescription = this.refs.surveyDescription.value;
+    this.state.questions.push(this.refs.question1.value);
+
+    console.log(this.refs.questionDiv);
+
+    this.refs.questionDiv.forEach(element => {
+      let questionText = element.querySelector("input").getAttribute("ref");
+      this.state.questions.push(questionText);
+    });
+
+    console.log(this.state);
   }
 
   render() {
@@ -38,18 +45,18 @@ class Create extends Component {
           <div className="row">
             <form className="col s12" style={formStyle}>
               <div className="input-field col s12">
-                <input id="survey_title" name="surveyTitle" type="text" data-length="20" className="validate" />
-                <label for="survey_title">Survey Title</label>
+                <input id="surveyTitle" ref="surveyTitle" name="surveyTitle" type="text" data-length="50" className="validate" required />
+                <label for="surveyTitle">Survey Title</label>
               </div>
               <div className="input-field col s12">
-                <textarea id="textarea1" name="surveyDescription" className="materialize-textarea" data-length="120"></textarea>
-                <label for="textarea1">Description</label>
+                <textarea id="surveyDescription" ref="surveyDescription" name="surveyDescription" className="materialize-textarea" data-length="120" required></textarea>
+                <label for="surveyDescription">Description</label>
               </div>
               <div ref="questionDiv">
                 <div className="input-field inline col s12">
                   <i class="material-icons prefix">mode_edit</i>
-                  <input id="question_inline" type="text" className="validate" />
-                  <label for="question_inline">Question 1</label>
+                  <input id="question1" ref="question1" type="text" className="validate" required />
+                  <label for="question1">Question 1</label>
                 </div>
               </div>
               <button className="btn" onClick={this.handleCreateQuestion}>+ Add Question</button>
