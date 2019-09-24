@@ -20,6 +20,14 @@ class Create extends Component {
     question8: "",
     question9: "",
     question10: "",
+    iterator: 1,
+  }
+
+  handleCreateQuestion = (event) => {
+    event.preventDefault();
+    this.state.iterator++;
+    const questionDiv = this.refs.questionDiv;
+    questionDiv.innerHTML += '<div class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question_inline" type="text" class="validate" /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>'
   }
 
   render() {
@@ -37,11 +45,14 @@ class Create extends Component {
                 <textarea id="textarea1" name="surveyDescription" className="materialize-textarea" data-length="120"></textarea>
                 <label for="textarea1">Description</label>
               </div>
-              <div className="input-field inline col s12">
-                <i class="material-icons prefix">mode_edit</i>
-                <input id="email_inline" type="email" className="validate" />
-                <label for="email_inline">Question 1</label>
+              <div ref="questionDiv">
+                <div className="input-field inline col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <input id="question_inline" type="text" className="validate" />
+                  <label for="question_inline">Question 1</label>
+                </div>
               </div>
+              <button className="btn" onClick={this.handleCreateQuestion}>+ Add Question</button>
               <button className="btn" onClick={this.handleSubmit} type="submit">create survey</button>
             </form>
           </div>
