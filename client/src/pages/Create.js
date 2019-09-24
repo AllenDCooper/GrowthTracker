@@ -53,6 +53,8 @@ class Create extends Component {
                 </div>
               </div>
               <button className="btn" onClick={this.handleCreateQuestion}>+ Add Question</button>
+              <br />
+              <br />
               <button className="btn" onClick={this.handleSubmit} type="submit">create survey</button>
             </form>
           </div>
