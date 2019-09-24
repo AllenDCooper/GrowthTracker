@@ -49,7 +49,6 @@ class Create extends Component {
       </div>
     )
   }
-
 }
 
 export default Create;
