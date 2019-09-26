@@ -2,7 +2,7 @@ const router = require("express").Router();
 const surveyRoutes = require("./surveys");
 const userRoutes = require("./users")
 
-// Book routes
+// Routes
 router.use("/surveys/", surveyRoutes);
 router.use("/users/", userRoutes)
 

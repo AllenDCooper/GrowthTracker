@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const db = require("../models");
 const surveySeeds = require("./surveys.json")
 
-// This file empties the Examples collection and inserts the examples below
+// This file empties the Examples collection and inserts the examples below.
 
 mongoose.connect(
   process.env.MONGODB_URI ||

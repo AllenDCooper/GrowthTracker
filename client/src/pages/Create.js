@@ -62,7 +62,7 @@ class Create extends Component {
                 <label for="surveyTitle">Survey Title</label>
               </div>
               <div className="input-field col s12">
-                <textarea id="surveyDescription" ref="surveyDescription" name="surveyDescription" className="materialize-textarea" data-length="120" required></textarea>
+                <textarea id="surveyDescription" ref="surveyDescription" name="surveyDescription" className="materialize-textarea" data-length="120"></textarea>
                 <label for="surveyDescription">Description</label>
               </div>
               <div ref="questionDiv">
