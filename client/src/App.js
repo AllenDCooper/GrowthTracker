@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import Signup from "./pages/Signup.js";
 import Login from "./pages/Login.js";
-// import additional pages as created
+// Import additional pages as created.
 import Dashboard from "./pages/Dashboard.js";
 import Search from "./pages/Search.js";
 import Create from "./pages/Create.js";
@@ -19,12 +19,12 @@ class App extends Component {
     savedSurveys: []
   };
 
-  // gets user on mount
+  // Gets user on mount.
   componentDidMount() {
     this.getUser();
   };
 
-  // function to get current user saved in the session
+  // Function to get current user saved in the session.
   getUser() {
     axios.get("/user/").then(response => {
       console.log("Get user response: ")
@@ -65,7 +65,7 @@ class App extends Component {
     .catch(err => console.log(err));
   };
 
-  // this function will save the userObject into the state
+  // This function will save the userObject into the state.
   updateUser(userObject) {
     this.setState(userObject)
   }
@@ -78,7 +78,7 @@ class App extends Component {
         <div>
           <Route 
             exact path="/" 
-            // this will pass the updateUser function as props into the Login component that is called in this route
+            // This will pass the updateUser function as props into the Login component that is called in this route.
             render={(props) => <Login {...props} updateUser={this.updateUser}/>}
           />
           <Route
@@ -87,7 +87,7 @@ class App extends Component {
           />
           <Route 
             exact path="/dashboard" 
-            // this will pass the updateUser function as props into the Login component that is called in this route
+            // This will pass the updateUser function as props into the Login component that is called in this route.
             render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} getUser={this.getUser} savedSurveys={this.state.savedSurveys}/>}
           />
           <Route 

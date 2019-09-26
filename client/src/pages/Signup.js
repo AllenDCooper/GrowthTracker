@@ -28,7 +28,7 @@ class Signup extends Component {
     });
   };
 
-  // change to get request
+  // Change to get request.
   handleSubmit = event => {
     console.log("sign-up handleSubmit, username: ")
     console.log(this.state.username);
