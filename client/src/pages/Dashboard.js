@@ -135,7 +135,7 @@ class Dashboard extends Component {
             {this.props.savedSurveys.map(survey => (
               <div>
                 <SurveyUserCardItem hideCard={this.hideCard} id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID}>
-                  {survey.item.map( (question, index) => (
+                  {survey.items.map( (question, index) => (
                     <QuestionCard
                       text={question}
                       hideCard={this.hideCard}

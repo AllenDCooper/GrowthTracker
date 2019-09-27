@@ -30,8 +30,9 @@ class Create extends Component {
   removeQuestion = (event) => {
     event.preventDefault();
     console.log(this.state.questions);
-    let index = event.target.parentNode.parentNode.getAttribute("datavalue")
+    let index = event.target.parentNode.parentNode.getAttribute("datavalue") || event.target.parentNode.parentNode.parentNode.getAttribute("datavalue");
     console.log(event.target.parentNode.parentNode);
+    console.log(event.target.parentNode.parentNode.parentNode);
     console.log(index);
     let arr = this.state.questions
     arr.splice(index, 1)

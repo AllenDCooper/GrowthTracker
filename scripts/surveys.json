@@ -2,31 +2,31 @@
   {
     "name": "Survey 1", 
     "description":  "First metacognitive survey.",
-    "item": ["1. I ask myself periodically if I am meeting my goals.", "2. I consider several alternatives to a problem before I answer.", "3. I try to use strategies that have worked in the past.", "4. I pace myself while learning in order to have enough time.", "5. I understand my intellectual strengths and weaknesses."],
+    "items": ["1. I ask myself periodically if I am meeting my goals.", "2. I consider several alternatives to a problem before I answer.", "3. I try to use strategies that have worked in the past.", "4. I pace myself while learning in order to have enough time.", "5. I understand my intellectual strengths and weaknesses."],
     "rawScores": []
   },
   {
     "name": "Survey 2", 
     "description":  "Second metacognitive survey.",
-    "item": ["1. I think about what I really need to learn before I begin a task.", "2. I know how well I did once I finish a test.", "3. I set specific goals before I begin a task.", "4. I slow downwhen I encounter important information.", "5. I know what kind of information is most important to learn."],
+    "items": ["1. I think about what I really need to learn before I begin a task.", "2. I know how well I did once I finish a test.", "3. I set specific goals before I begin a task.", "4. I slow downwhen I encounter important information.", "5. I know what kind of information is most important to learn."],
     "rawScores": []
     },
     {
       "name": "Survey 3", 
       "description":  "Third metacognitive survey.",
-      "item": ["1. I ask myself if I have considered all options when solving a problem.", "2. I am good at organizing information.", "3. I consciously focus my attention on important information.", "4. I have a specific purpose for each strategy I use.", "5. I learn best when I know something about the topic."],
+      "items": ["1. I ask myself if I have considered all options when solving a problem.", "2. I am good at organizing information.", "3. I consciously focus my attention on important information.", "4. I have a specific purpose for each strategy I use.", "5. I learn best when I know something about the topic."],
       "rawScores": []
     },
     {
       "name": "Survey 4", 
       "description":  "Fourth metacognitive survey.",
-      "item": ["1. I know what the teacher expects me to learn.", "2. I am good at remembering information.", "3. I use different learning strategies depending on the situation.", "4. I ask myself if there was an easier way to do things after I finish a task.", "5. I have control over how well I learn."],
+      "items": ["1. I know what the teacher expects me to learn.", "2. I am good at remembering information.", "3. I use different learning strategies depending on the situation.", "4. I ask myself if there was an easier way to do things after I finish a task.", "5. I have control over how well I learn."],
       "rawScores": []
     },
     {
       "name": "Survey 5", 
       "description":  "Fifth metacognitive survey.",
-      "item": ["1. I periodically review to help me understand important relationships.", "2. I ask myself questions about the material before I begin.", "3. I think of several ways to solve a problem and choose the best one.", "4. I summarize what I’ve learned after I finish.", "5. I ask others for help when I don’t understand something."],
+      "items": ["1. I periodically review to help me understand important relationships.", "2. I ask myself questions about the material before I begin.", "3. I think of several ways to solve a problem and choose the best one.", "4. I summarize what I’ve learned after I finish.", "5. I ask others for help when I don’t understand something."],
       "rawScores": []
     }
 ]
