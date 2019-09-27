@@ -59,7 +59,7 @@ class Create extends Component {
   // This function uses an axios POST call to server to create new survey
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("/api/survey", {
+    axios.post("/api/surveys/", {
       name: this.state.surveyTitle,
       description: this.state.surveyDescription,
       items: this.state.questions
