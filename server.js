@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 // Require express-session to establish session connection.
 const session = require("express-session");

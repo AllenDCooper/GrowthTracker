@@ -5,8 +5,11 @@ const surveysController = require("../../controllers/surveysController.js");
 router.route("/")
   .get(surveysController.findAll)
 
-  router.route("/:id")
+router.route("/:id")
   .put(surveysController.update)
+
+router.route("/")
+  .post(surveysController.create)
 
 // Matches with "/api/surveys/:id"
 // router
