@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from "../components/Nav/Nav.js"
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const formStyle = {
   marginTop: "15px",
@@ -10,45 +12,66 @@ class Create extends Component {
   state = {
     surveyTitle: "",
     surveyDescription: "",
-    questions: [],
-    iterator: 1,
+    questions: [""],
   }
 
-  handleCreateQuestion = (event) => {
+  // This function adds new blank question text inputs onto the page; it is called as an onClick attribute on the "add questions" button in the render function below. 
+  // It uses the prevState parameter on setState to get the current questions array, which is then destructured it into its elements.
+  // Finally, it pushes a new empty question string to the existing array, updating the state, and causing an automatic re-render 
+  addQuestion = (event) => {
     event.preventDefault();
-    this.state.iterator++;
-    const questionDiv = this.refs.questionDiv;
-    questionDiv.innerHTML += '<div ref="questionHTML" class="input-field inline col s12"> <i class="material-icons prefix">mode_edit</i> <input id="question' + this.state.iterator + '" ref="question' + this.state.iterator + '" type="text" class="validate" required /> <label for="question_inline">Question ' + this.state.iterator + '</label> </div>';
+    this.setState((prevState) => ({
+      questions: [...prevState.questions, ""]
+    }))
+    console.log(this.state.questions);
+  }
+  
+  // This function removes an empty question input
+  removeQuestion = (event) => {
+    event.preventDefault();
+    let index = event.target.getAttribute("datavalue")
+    let arr = this.state.questions
+    arr.splice(index, 1)
+    this.setState({
+      questions: arr
+    })
+  }
+  
+  // This function dynamically adds the user's text for the survey title and description into state as they type.
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   }
 
+  // This function dynamically adds the user's question text into state, as they type.
+  handleQuestionChange = (event) => {
+    let questionIndex = event.target.getAttribute("datavalue")
+    let questionArr = this.state.questions
+    questionArr[questionIndex] = event.target.value
+    this.setState({
+      questions: questionArr
+    })
+    console.log(this.state.questions.questionIndex);
+  }
+
+  // This function uses an axios POST call to server to create new survey
   handleSubmit = (event) => {
     event.preventDefault();
-    this.state.surveyTitle = this.refs.surveyTitle.value;
-    this.state.surveyDescription = this.refs.surveyDescription.value;
-    console.log(this.refs.surveyDescription.value);
-    this.state.questions.push(this.refs.question1.value);
-    console.log(this.refs.question1.value);
-
-    for ( let i = 1; i < this.state.iterator; i++) {
-      let questionRef = "question" + i;
-      console.log(questionRef)
-      let questionElement = this.refs.question1;
-      console.log(questionElement);
-      this.state.questions.push(questionElement.value);
-    }
-
-    //let questionHTML = this.refs.questionDiv
-    //console.log(typeof questionHTML)
-    //console.log(questionHTML)
-    // this.refs.questionDiv;
-
-    // this.refs.questionDiv.forEach(element => {
-    //   let questionText = element.querySelector("input").getAttribute("ref");
-    //   this.state.questions.push(questionText);
-    // });
-
-    console.log(this.state);
-  }
+    axios.post("/api/survey", {
+      name: this.state.surveyTitle,
+      description: this.state.surveyDescription,
+      items: this.state.questions
+    })
+    .then(response => {
+      console.log("survey successfully created")
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  };
 
   render() {
     return (
@@ -58,21 +81,27 @@ class Create extends Component {
           <div className="row">
             <form className="col s12" style={formStyle}>
               <div className="input-field col s12">
-                <input id="surveyTitle" ref="surveyTitle" name="surveyTitle" type="text" data-length="50" className="validate" required />
+                <input id="surveyTitle" value={this.state.surveyTitle} onChange={this.handleChange} name="surveyTitle" type="text" data-length="50" className="validate" required />
                 <label for="surveyTitle">Survey Title</label>
               </div>
               <div className="input-field col s12">
-                <textarea id="surveyDescription" ref="surveyDescription" name="surveyDescription" className="materialize-textarea" data-length="120"></textarea>
+                <textarea id="surveyDescription" value={this.state.surveyDescription} onChange={this.handleChange} ref="surveyDescription" name="surveyDescription" className="materialize-textarea" data-length="120"></textarea>
                 <label for="surveyDescription">Description</label>
               </div>
-              <div ref="questionDiv">
-                <div ref="questionHTML" className="input-field inline col s12">
-                  <i class="material-icons prefix">mode_edit</i>
-                  <input id="question1" ref="question1" type="text" className="validate" required />
-                  <label for="question1">Question 1</label>
+              {this.state.questions.map((question, index) => (
+                  <div ref="questionDiv">
+                  <div ref="questionHTML" className="input-field inline col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input datavalue={index} value={this.state.questions[index]} onChange={this.handleQuestionChange} style={{width: "90%"}} id={"question"+parseInt(index+1)} ref={"question"+parseInt(index+1)} type="text" className="validate" required />
+                    <IconButton onClick={this.removeQuestion} datavalue={index} aria-label="delete">
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                    <label for={"question"+parseInt(index+1)}>{"question"+parseInt(index+1)}</label>
+                  </div>
                 </div>
-              </div>
-              <button className="btn" onClick={this.handleCreateQuestion}>+ Add Question</button>
+              ))}
+
+              <button className="btn" onClick={this.addQuestion}>+ Add Question</button>
               <br />
               <br />
               <button className="btn" onClick={this.handleSubmit} type="submit">create survey</button>
