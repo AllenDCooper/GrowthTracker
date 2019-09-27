@@ -29,9 +29,13 @@ class Create extends Component {
   // This function removes an empty question input
   removeQuestion = (event) => {
     event.preventDefault();
-    let index = event.target.getAttribute("datavalue")
+    console.log(this.state.questions);
+    let index = event.target.parentNode.parentNode.getAttribute("datavalue")
+    console.log(event.target.parentNode.parentNode);
+    console.log(index);
     let arr = this.state.questions
     arr.splice(index, 1)
+    console.log(arr);
     this.setState({
       questions: arr
     })
