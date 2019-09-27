@@ -31,7 +31,7 @@ class Dashboard extends Component {
   };
 
   handleAnswers(answer) {
-    // pushes value into answer array
+    // Pushes value into answer array.
     this.state.answerArr.push(parseInt(answer));
     console.log(this.state.answerArr);
     this.updateRawScore();

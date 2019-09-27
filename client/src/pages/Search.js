@@ -25,7 +25,7 @@ class Search extends Component {
     this.getSurveys();
   };
 
-  // function to save survey to user document when clicked
+  // Function to save survey to user document when clicked.
   handleSaveSurvey = event => {
     event.preventDefault();
     console.log(event.target.getAttribute('data-value'));

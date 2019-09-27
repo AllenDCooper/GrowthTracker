@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the ExamplesController
+// Defining methods for the ExamplesController.
 module.exports = {
   findAll: function(req, res) {
     db.Example

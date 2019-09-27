@@ -3,7 +3,7 @@ const surveyRoutes = require("./surveys");
 const userRoutes = require("./users")
 const scoreRoutes = require("./scores")
 
-// Book routes
+// Routes
 router.use("/surveys/", surveyRoutes);
 router.use("/users/", userRoutes)
 router.use("/scores/", scoreRoutes)

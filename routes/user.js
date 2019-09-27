@@ -5,9 +5,9 @@ const User = require("../models/user.js");
 const passport = require("../passport");
 var { check, validationResult } = require("express-validator");
 
-// route for handling new user signup
+// Route for handling new user signup.
 router.post("/", [
-  // email must be an email
+  // Email must be an email.
   check("username", "Email field cannot be empty").not().isEmpty(),
   check("username", "Invalid email please verify the email address you have provided").isEmail(),
   check("username", "Email address must be between 4-100 characters long, please try again").isLength({ min: 5, max: 100 }),
@@ -26,10 +26,10 @@ router.post("/", [
       return res.json(errors)
 
   } else {
-    console.log("user signup");
+    console.log("User signup");
 
     const { username, password, firstName, lastName, organization } = req.body;
-    console.log("username: " + username);
+    console.log("Username: " + username);
 
     User.findOne({ username: username }, (err, user) => {
       if (err) {
@@ -48,7 +48,7 @@ router.post("/", [
         })
         newUser.save((err, savedUser) => {
           if (err) return res.json(err)
-          // use req.login to log user into the account just created
+          // Use req.login to log user into the account just created.
           req.login(savedUser, function(err) {
             if (err) {
               console.log(err);
@@ -62,14 +62,14 @@ router.post("/", [
 })
 
 
-// post route for handling login, using passport local
+// Post route for handling login, using passport local.
 router.post("/login/", 
   function (req, res, next) {
     console.log("routes/user.js, login, req.body: ");
     console.log(req.body);
     next();
   },
-  // authenticate with local strategy
+  // Authenticate with local strategy.
   passport.authenticate("local"),
   (req, res) => {
     console.log("logged in", req.user);
@@ -84,7 +84,7 @@ router.post("/login/",
   }
 )
 
-// route for handling 
+// Route for handling.
 router.get('/', (req, res, next) => {
   console.log("-----user!-----");
   console.log(req.user);
@@ -95,7 +95,7 @@ router.get('/', (req, res, next) => {
   }
 });
 
-// route for handling saving of surveys
+// Route for handling saving of surveys.
 router.put("/", (req, res) => {
   console.log("-----saved survey-----");
   console.log(req.body)
@@ -105,7 +105,7 @@ router.put("/", (req, res) => {
   .catch(err => res.status(422).json(err));
 })
 
-// route for handling logging out
+// Route for handling logging out.
 router.post("/logout", (req, res) => {
   if (req.user) {
     req.logout()
