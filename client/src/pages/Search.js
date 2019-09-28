@@ -38,7 +38,7 @@ class Search extends Component {
       this.setState({
         redirectTo: "/dashboard"
       })
-      window.location.reload()
+      // window.location.reload()
     })
   }
 
