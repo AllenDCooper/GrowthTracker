@@ -41,10 +41,12 @@ class Search extends Component {
     }).then(response => {
       console.log("saveSurveys response: ")
       console.log(response);
-      this.setState({
-        redirectTo: "/dashboard"
-      })
-      // window.location.reload()
+      // Lift returned user object up to parent (App.js).
+      this.props.updateRedirect(response.data);
+      // Redirect to dashboard where user can take the saved survey.
+      // this.setState({
+      //   redirectTo: "/dashboard"
+      // })
     })
   }
 

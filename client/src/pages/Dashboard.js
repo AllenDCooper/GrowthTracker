@@ -27,8 +27,23 @@ class Dashboard extends Component {
     percentileRank: null,
     activeSurveyID: null,
     totalRawScore: null,
+    savedSurveys: []
   }
   
+  componentDidMount() {
+    this.setState({
+      savedSurveys: this.props.savedSurveys
+    })
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if(this.props.savedSurveys !== prevProps.savedSurveys) {
+      this.setState({
+        savedSurveys: this.props.savedSurveys
+      })
+    }
+  }
+
   updateRawScore() {
     this.setState({
       totalRawScore: this.getTotalRawScore(this.state.answerArr)
@@ -140,7 +155,7 @@ class Dashboard extends Component {
         </div>
         <div className="container">
           <SurveyUserCard>
-            {this.props.savedSurveys.map(survey => (
+            {this.state.savedSurveys.map(survey => (
               <div>
                 <SurveyUserCardItem hideCard={this.hideCard} id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID}>
                   {survey.items.map( (question, index) => (
