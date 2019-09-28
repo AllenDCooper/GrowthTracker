@@ -72,7 +72,7 @@ class Login extends Component {
                 </div>
                 <div className="row">
                   <div className="input-field col s6">
-                    <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
+                    <button className="btn" onClick={this.handleSubmit} type="submit">sign in</button>
                   </div>
                 </div>
               </form>
