@@ -51,7 +51,7 @@ class SurveyUserCardItem extends Component {
                 <div className="card-action">
                   <a data-value={this.props.data} href="#" onClick={this.handleClick}>Start Survey</a>
                   <a href="#">View Results</a>
-                  <a className="btn-floating btn waves-effect waves-light grey darken-4"><i data-value1={this.props.userID} data-value2={this.props.id} className="material-icons" onClick={this.unsave}>close</i></a>
+                  <a className="btn-floating btn waves-effect waves-light grey darken-4" ariaLabel="close"><i data-value1={this.props.userID} data-value2={this.props.id} className="material-icons" onClick={this.unsave}>close</i></a>
                 </div>
               </div>
             </div>

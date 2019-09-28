@@ -4,6 +4,12 @@ import axios from "axios";
 import Nav from "../components/Nav/Nav.js";
 import { SurveyCard, SurveyCardItem } from "../components/SurveyCard/SurveyCard.js"
 
+const userDiv = {
+  paddingTop: "15px",
+  marginLeft: "0",
+  fontWeight: "bolder",
+}
+
 class Search extends Component {
   state = {
     surveys: [],
@@ -49,7 +55,7 @@ class Search extends Component {
       return(
         <div>
           <Nav {...this.props} updateUser={this.props.updateUser} loggedIn={this.props.loggedIn} />
-          {this.props.loggedIn && <p>Welcome, {this.props.username}! Click to add available growth.trackers.</p>}
+          {this.props.loggedIn && <div className="container" style={userDiv}><p><i class="small material-icons" style={{verticalAlign: "middle"}}>account_circle</i>&nbsp;Welcome,&nbsp;{this.props.username}! Click to add available growth.trackers.</p></div>}
           <SurveyCard>
             {this.state.surveys.map(item => (
               <SurveyCardItem saveFunction={this.handleSaveSurvey} id={item._id} name={item.name} desc={item.description} />

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 
-// let questionCardStyle = {
-//   position: "absolute",
-//   top: "0px",
-//   right: "0px",
-//   "z-index": (this.props.index - 1)
-// }
+const buttonStyle = {
+  marginLeft: "5px",
+  marginBottom: "5px"
+}
 
 class QuestionCard extends Component {
   state = {
@@ -78,7 +76,7 @@ class QuestionCard extends Component {
                 </label>
               </p>
             </form>
-            <a className="btn-floating waves-effect waves-light red"><i data-value={this.props.id} onClick={this.handleClick} className="material-icons">navigate_next</i></a>
+            <a className="btn-floating waves-effect waves-light red" style={buttonStyle}><i data-value={this.props.id} onClick={this.handleClick} className="material-icons">navigate_next</i></a>
           </div>
         </div>
       )
