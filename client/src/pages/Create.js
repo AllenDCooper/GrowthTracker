@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Nav from "../components/Nav/Nav.js"
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import IconButton from '@material-ui/core/IconButton';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
 const formStyle = {
   marginTop: "15px",
@@ -98,9 +98,9 @@ class Create extends Component {
                   <div ref="questionHTML" className="input-field inline col s12">
                     <i class="material-icons prefix">mode_edit</i>
                     <input datavalue={index} value={this.state.questions[index]} onChange={this.handleQuestionChange} style={{width: "90%"}} id={"question"+parseInt(index+1)} ref={"question"+parseInt(index+1)} type="text" className="validate" required />
-                    <IconButton onClick={this.removeQuestion} datavalue={index} aria-label="delete">
+                    {/* <IconButton onClick={this.removeQuestion} datavalue={index} aria-label="delete">
                       <DeleteIcon fontSize="small" />
-                    </IconButton>
+                    </IconButton> */}
                     <label for={"question"+parseInt(index+1)}>{"question"+parseInt(index+1)}</label>
                   </div>
                 </div>

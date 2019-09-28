@@ -16,7 +16,7 @@ export function SurveyCardItem(props) {
           <span className="card-title">{props.name}</span>
           <p>{props.desc}</p>
         </div>
-        <a className="btn-floating waves-effect halfway-fab waves-light red"><i data-value={props.id} onClick={props.saveFunction} className="material-icons">+</i></a>
+        <a className="btn-floating waves-effect halfway-fab waves-light red" ariaLabel="add"><i data-value={props.id} onClick={props.saveFunction} className="material-icons">+</i></a>
       </div>
     </div>
   )
