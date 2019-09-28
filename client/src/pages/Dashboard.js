@@ -143,8 +143,13 @@ class Dashboard extends Component {
     .catch(err => {
       console.log(err)
     });
-
   };
+
+  updateSurveys = (updatedSurveys) => {
+    this.setState({
+      savedSurveys: updatedSurveys
+    })
+  }
 
   render() {
     return(
@@ -157,7 +162,7 @@ class Dashboard extends Component {
           <SurveyUserCard>
             {this.state.savedSurveys.map(survey => (
               <div>
-                <SurveyUserCardItem hideCard={this.hideCard} id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID}>
+                <SurveyUserCardItem hideCard={this.hideCard} id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID} updateSurveys={this.updateSurveys}>
                   {survey.items.map( (question, index) => (
                     <QuestionCard
                       text={question}
