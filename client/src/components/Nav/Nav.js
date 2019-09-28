@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./nav.css"
 import Axios from "axios";
+import indigo from '@material-ui/core/colors/indigo';
+
 
 class Nav extends Component {
 
@@ -33,8 +35,8 @@ class Nav extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-        <nav>
-          <ul>
+        <nav style={{backgroundColor: indigo[500]}}>
+          <ul style={{backgroundColor: indigo[500]}}>
             <li><a href="/dashboard">dashboard</a></li>
             <li><a href="/search">search</a></li>
             <li><a href="/create">create</a></li>
