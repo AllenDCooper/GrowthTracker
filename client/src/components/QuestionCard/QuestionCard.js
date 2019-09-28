@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Slider } from '@material-ui/core';
 import Container from '@material-ui/core/Container'; 
+// import "./styles.css"
+import Grid from '@material-ui/core/Grid';
 
 const buttonStyle = {
   marginLeft: "5px",
@@ -94,14 +96,16 @@ class QuestionCard extends Component {
         //       <p>{this.props.text}</p>
         //     </div>
         <Container>
-        <Card className={classes.card} key={this.props.index} data-value={this.props.index} style={{ position: 'absolute', zIndex: -this.props.index }}>
-          <CardContent>
+        <Grid container spacing={3}>
+        <Grid item xs={10}>
+        <Card className={classes.card} key={this.props.index} data-value={this.props.index} style={{ zIndex: -this.props.index, position:"absolute", width: "80%"}}>
+          <CardContent style={{padding: "5px", width: "80%", height: "450px"}}>
             <Typography id="vertical-slider" className={classes.title} color="textSecondary" gutterBottom>
             </Typography>
             <Typography variant="body2" component="p">
               {this.props.text}
             </Typography>
-            <form>
+            <form style={{height: "300px", margin: "20px"}}>
               <Slider
                 orientation="vertical"
                 defaultValue={3}
@@ -154,6 +158,8 @@ class QuestionCard extends Component {
         </div> */}
         </CardContent>
         </Card>
+        </Grid>
+        </Grid>
         </Container>
       )
     }

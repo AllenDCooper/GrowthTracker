@@ -77,20 +77,20 @@ class SurveyUserCardItem extends Component {
           // <div style={{ position: "relative", minHeight: "440px" }}> 
           //   {this.props.children}
             <Container>
-            <Card className={classes.card} key={this.props.id} style={{zIndex: 1}}>
-              <CardContent>
+            <Card className={classes.card} key={this.props.id}  style={{zIndex: 1}}>
+              <CardContent style={{ padding: "5px", height: "450px"}}>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                 {this.props.name}
                 </Typography>
                 <Typography variant="body2" component="p">
                 {this.props.desc}
                 </Typography>
-              </CardContent>
-              <CardActions>
+                <CardActions>
               <a data-value={this.props.data} href="#" onClick={this.handleClick}>Start Survey</a>
                   <a href="#">View Results</a>
                   <a className="btn-floating btn waves-effect waves-light grey darken-4" ariaLabel="close"><i data-value1={this.props.userID} data-value2={this.props.id} className="material-icons" onClick={this.unsave}>close</i></a>
               </CardActions>
+              </CardContent>
             </Card>
             </Container>
             /* <div className="col s12 m6 offset-m3" key={this.props.id} style={{zIndex: 1, position: "absolute" }}>

@@ -161,7 +161,7 @@ class Dashboard extends Component {
         </div>
           <SurveyUserCard>
             {this.state.savedSurveys.map(survey => (
-              <div>
+              // <div>
                 <SurveyUserCardItem hideCard={this.hideCard} id={survey._id} name={survey.name} desc={survey.description} data={survey.items} userID={this.props.userID} updateSurveys={this.updateSurveys}>
                   {survey.items.map( (question, index) => (
                     <QuestionCard
@@ -175,10 +175,10 @@ class Dashboard extends Component {
                   ))}
                   {/* <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/> */}
                 </SurveyUserCardItem>
-              </div>
+              // </div>
             ))}
           </SurveyUserCard>
-          </div>
+        </div>
     )
   }
 }

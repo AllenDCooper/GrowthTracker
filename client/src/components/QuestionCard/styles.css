@@ -1,0 +1,36 @@
+.MuiCardContent-root {
+    padding: 5px;
+    width: 80%;    
+    height: 450px;
+}
+
+form {
+    height: 300px;
+    margin: 20px;
+}
+
+@media (min-width: 1280px) {
+    .MuiContainer-maxWidthLg, .MuiCardContent-root {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 960px) {
+    .MuiContainer-root, .MuiCardContent-root {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+@media (min-width: 600px) {
+    .MuiContainer-root, .MuiCardContent-root {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+.MuiContainer-root, .MuiCardContent-root {
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+}
