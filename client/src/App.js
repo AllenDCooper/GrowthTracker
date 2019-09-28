@@ -72,6 +72,14 @@ class App extends Component {
   
   updateUser = this.updateUser.bind(this);
 
+  updateRedirect(userObject) {
+    this.setState(userObject, () => {
+      document.location.href = "/dashboard"
+    });
+  }
+
+  updateRedirect = this.updateRedirect.bind(this)
+
   render() {
     return (
       <Router>
@@ -92,7 +100,7 @@ class App extends Component {
           />
           <Route 
             exact path="/search"
-            render={(props) => <Search {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} />}
+            render={(props) => <Search {...props} updateUser={this.updateUser} updateRedirect={this.updateRedirect}loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} />}
           />
           <Route 
             exact path="/create"

@@ -27,8 +27,10 @@ class SurveyUserCardItem extends Component {
     })
     .then(response => {
       console.log("unsave response: ");
-      console.log(response);
-      window.location.reload()
+      console.log(response.data)
+      console.log(response.data.savedSurveys);
+      // pass state back up app
+      this.props.updateSurveys(response.data.savedSurveys);
     })
     .catch(err => console.log(err))
   }
