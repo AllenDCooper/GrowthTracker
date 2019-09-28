@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 
 export function SurveyCard({children}) {
   return (
-    <div className="row">
+    <div>
       {children}
     </div>
   )

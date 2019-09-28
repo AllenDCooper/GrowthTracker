@@ -6,6 +6,7 @@ import SurveyUserCard from "../components/SurveyUserCard/SurveyUserCard";
 import SurveyUserCardItem from "../components/SurveyUserCardItem/SurveyUserCardItem";
 import QuestionCard from "../components/QuestionCard/QuestionCard.js"
 import ResultsCard from "../components/ResultsCard/ResultsCard.js"
+import { Container } from '@material-ui/core';
 import { set } from "mongoose";
 
 const userDiv = {
@@ -158,7 +159,6 @@ class Dashboard extends Component {
         <div className="container" style={userDiv}>
           {this.props.loggedIn && <p><i class="small material-icons" style={{verticalAlign: "middle"}}>account_circle</i>&nbsp;Welcome,&nbsp;{this.props.username}!</p>}
         </div>
-        <div className="container">
           <SurveyUserCard>
             {this.state.savedSurveys.map(survey => (
               <div>
@@ -173,13 +173,12 @@ class Dashboard extends Component {
                       id={survey._id}
                     />
                   ))}
-                  <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/>
+                  {/* <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/> */}
                 </SurveyUserCardItem>
               </div>
             ))}
           </SurveyUserCard>
-        </div>
-      </div>
+          </div>
     )
   }
 }
