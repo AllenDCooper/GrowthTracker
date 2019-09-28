@@ -12,6 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 import Switch from '@material-ui/core/Switch';
+import indigo from '@material-ui/core/colors/indigo';
 
 const cardStyle = {
   position: relative,
@@ -91,7 +92,7 @@ class SurveyUserCardItem extends Component {
         //   {this.props.children}
         <Container style={{marginTop: "20px"}}>
           <Slide direction="right" in={this.state.checked} unmountOnExit>
-            <Card className={classes.card} key={this.props.id} style={{ zIndex: 1 }}>
+            <Card className={classes.card} key={this.props.id} style={{ zIndex: 1, backgroundColor: indigo[50]}}>
               <CardContent style={{ padding: "5px", height: "450px" }}>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                   {this.props.name}

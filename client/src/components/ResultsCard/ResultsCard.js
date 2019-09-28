@@ -9,6 +9,7 @@ import { red } from '@material-ui/core/colors';
 import Icon from '@material-ui/core/Icon';
 import Container from '@material-ui/core/Container';
 import { typography } from "@material-ui/system";
+import indigo from '@material-ui/core/colors/indigo';
 
 const useStyles = makeStyles => ({
   card: {
@@ -37,7 +38,7 @@ function ResultsCard(props) {
   
 return (
   <Container>
-    <Card className={classes.card} key={props.id} style={{ position: 'absolute', zIndex: -200, width: "80%" }}>
+    <Card className={classes.card} key={props.id} style={{ position: 'absolute', zIndex: -200, width: "80%", backgroundColor: indigo[50] }}>
       <CardContent style={{ padding: "5px", height: "450px" }}>
       <Typography variant="h5" component="h2">
           Your percentile rank is {props.results}%.

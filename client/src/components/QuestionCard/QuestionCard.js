@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import Switch from '@material-ui/core/Switch';
+import indigo from '@material-ui/core/colors/indigo';
 
 const buttonStyle = {
   marginLeft: "5px",
@@ -110,7 +111,7 @@ class QuestionCard extends Component {
         <Grid container spacing={3}>
         <Grid item xs={10}>
         <Slide direction="right" in={this.state.checked} unmountOnExit>
-        <Card className={classes.card} key={this.props.index} data-value={this.props.index} style={{ zIndex: -this.props.index, position:"absolute", width: "80%"}}>
+        <Card className={classes.card} key={this.props.index} data-value={this.props.index} style={{ zIndex: -this.props.index, position:"absolute", width: "80%", backgroundColor: indigo[50]}}>
           <CardContent style={{padding: "5px", width: "80%", height: "450px"}}>
             <Typography id="vertical-slider" className={classes.title} color="textSecondary" gutterBottom>
             </Typography>
