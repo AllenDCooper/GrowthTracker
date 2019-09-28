@@ -100,7 +100,7 @@ router.put("/", (req, res) => {
   console.log("-----saved survey-----");
   console.log(req.body)
   // find user record in database and add survey
-  User.findOneAndUpdate({ _id: req.body.userID}, {$push: { savedSurveys: req.body.surveyID }} )
+  User.findOneAndUpdate({ _id: req.body.userID}, {$push: { savedSurveys: req.body.surveyID }}, {new: true} )
   .then(userDocument => res.json(userDocument))
   .catch(err => res.status(422).json(err));
 })

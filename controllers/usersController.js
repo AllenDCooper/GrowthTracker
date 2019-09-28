@@ -31,13 +31,14 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-    .findOneAndUpdate({ _id: req.body.userID }, {$pull: {savedSurveys: req.body.surveyID}} )
+    .findOneAndUpdate({ _id: req.body.userID }, {$pull: {savedSurveys: req.body.surveyID}}, {new: true} )
+    .populate("savedSurveys")
     .then(userDocument => res.json(userDocument))
     .catch(err => res.status(422).json(err));
   },
   updateScore: function(req, res) {
     db.User
-    .findOneAndUpdate({ _id: req.body.userID }, {$push: {scores: req.body.scoresID}} )
+    .findOneAndUpdate({ _id: req.body.userID }, {$push: {scores: req.body.scoresID}}, {new: true} )
     .then(userDocument => res.json(userDocument))
     .catch(err => res.status(422).json(err));
   }
