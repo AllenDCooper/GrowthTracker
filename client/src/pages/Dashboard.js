@@ -173,7 +173,7 @@ class Dashboard extends Component {
                       id={survey._id}
                     />
                   ))}
-                  {/* <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/> */}
+                  <ResultsCard submitAnswers={this.submitAnswers} results={this.state.percentileRank} rawScore={this.state.totalRawScore}/>
                 </SurveyUserCardItem>
               // </div>
             ))}

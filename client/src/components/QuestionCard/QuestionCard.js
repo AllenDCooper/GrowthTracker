@@ -74,11 +74,10 @@ class QuestionCard extends Component {
     this.props.getSurveyID(this.props.id);
   };
 
-  handleAnswerClick = (event) => {
+  changeSlider(event, value) {
     this.setState({
-      answer: event.target.value
+      answer: value
     })
-    console.log(this.state.answer);
   }
 
   render() {
@@ -115,6 +114,7 @@ class QuestionCard extends Component {
                 marks={marks}
                 min={1}
                 max={6}
+                onChange={(event, value) => this.changeSlider(event, value)}
               />
               {/* <p>
                 <label>
