@@ -87,7 +87,7 @@ class Signup extends Component {
             <br></br>
             <input placeholder="confirm password" type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleChange}/>
             <br></br>
-            <button className="btn" onClick={this.handleSubmit} type="submit">submit</button>
+            <button className="btn" onClick={this.handleSubmit} type="submit">sign up</button>
           </form>
         </div>
       )
