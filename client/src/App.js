@@ -65,8 +65,11 @@ class App extends Component {
     .catch(err => console.log(err));
   };
 
+  getSurveys = this.getSurveys.bind(this);
+
   // This function will save the userObject into the state.
   updateUser(userObject) {
+    console.log(userObject);
     this.setState(userObject)
   }
   
@@ -96,7 +99,7 @@ class App extends Component {
           <Route 
             exact path="/dashboard" 
             // This will pass the updateUser function as props into the Login component that is called in this route.
-            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} getUser={this.getUser} savedSurveys={this.state.savedSurveys}/>}
+            render={(props) => <Dashboard {...props} updateUser={this.updateUser} loggedIn={this.state.loggedIn} username={this.state.username} userID={this.state.userID} getUser={this.getUser} getSurveys={this.getSurveys} savedSurveys={this.state.savedSurveys}/>}
           />
           <Route 
             exact path="/search"

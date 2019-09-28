@@ -31,6 +31,7 @@ class Dashboard extends Component {
   }
   
   componentDidMount() {
+    
     this.setState({
       savedSurveys: this.props.savedSurveys
     })
