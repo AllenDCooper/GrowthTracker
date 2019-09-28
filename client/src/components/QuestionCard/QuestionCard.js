@@ -9,6 +9,8 @@ import { Slider } from '@material-ui/core';
 import Container from '@material-ui/core/Container'; 
 // import "./styles.css"
 import Grid from '@material-ui/core/Grid';
+import Slide from '@material-ui/core/Slide';
+import Switch from '@material-ui/core/Switch';
 
 const buttonStyle = {
   marginLeft: "5px",
@@ -64,12 +66,22 @@ class QuestionCard extends Component {
     isHidden: false,
     answer: null,
     surveyID: this.props.id,
+    checked: true,
+    setChecked: true
   }
 
-  handleClick = () => {
+  handleChange = () => {
     this.setState({
-      isHidden: true
-    });
+      setChecked: false,
+      checked: false
+    })
+  };
+
+  handleClick = () => {
+    this.handleChange();
+    // this.setState({
+    //   isHidden: true
+    // });
     this.props.handler(this.state.answer);
     this.props.getSurveyID(this.props.id);
   };
@@ -97,6 +109,7 @@ class QuestionCard extends Component {
         <Container>
         <Grid container spacing={3}>
         <Grid item xs={10}>
+        <Slide direction="right" in={this.state.checked} unmountOnExit>
         <Card className={classes.card} key={this.props.index} data-value={this.props.index} style={{ zIndex: -this.props.index, position:"absolute", width: "80%"}}>
           <CardContent style={{padding: "5px", width: "80%", height: "450px"}}>
             <Typography id="vertical-slider" className={classes.title} color="textSecondary" gutterBottom>
@@ -116,48 +129,11 @@ class QuestionCard extends Component {
                 max={6}
                 onChange={(event, value) => this.changeSlider(event, value)}
               />
-              {/* <p>
-                <label>
-                  <input value="6" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Strongly Agree</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input value="5" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Agree</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input value="4" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Somewhat Agree</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input value="3" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Somewhat Disagree</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input value="2" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Disagree</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input value="1" name="group1" type="radio" onChange={this.handleAnswerClick} />
-                  <span>Strongly Disagree</span>
-                </label>
-              </p> */}
             </form>
             <a className="btn-floating waves-effect waves-light red" style={buttonStyle}><i data-value={this.props.id} onClick={this.handleClick} className="material-icons">navigate_next</i></a>
-          {/* </div>
-        </div> */}
         </CardContent>
         </Card>
+        </Slide>
         </Grid>
         </Grid>
         </Container>

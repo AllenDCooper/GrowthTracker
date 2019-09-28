@@ -10,10 +10,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 import Icon from '@material-ui/core/Icon';
 import Container from '@material-ui/core/Container';
+import Slide from '@material-ui/core/Slide';
+import Switch from '@material-ui/core/Switch';
 
 const cardStyle = {
-  position: relative
+  position: relative,
 }
+
 
 const useStyles = makeStyles => ({
   card: {
@@ -39,13 +42,23 @@ const useStyles = makeStyles => ({
 
 class SurveyUserCardItem extends Component {
   state = {
-    isHidden: false
+    isHidden: false,
+    checked: true,
+    setChecked: true
   }
+
+  handleChange = () => {
+    this.setState({
+      setChecked: false,
+      checked: false
+    })
+  };
 
   handleClick = () => {
     this.setState({
-      isHidden: true
+      isHidden: true,
     });
+    this.handleChange();
   };
 
   unsave = () => {
@@ -56,58 +69,45 @@ class SurveyUserCardItem extends Component {
       userID: this.props.userID,
       surveyID: this.props.id
     })
-    .then(response => {
-      console.log("unsave response: ");
-      console.log(response.data)
-      console.log(response.data.savedSurveys);
-      // pass state back up app
-      this.props.updateSurveys(response.data.savedSurveys);
-    })
-    .catch(err => console.log(err))
+      .then(response => {
+        console.log("unsave response: ");
+        console.log(response.data)
+        console.log(response.data.savedSurveys);
+        // pass state back up app
+        this.props.updateSurveys(response.data.savedSurveys);
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
     const classes = useStyles();
 
     if (this.state.isHidden) {
-      return(<div style={{ position: 'relative', minHeight: "440px", zIndex: 5 }}>{this.props.children}
+      return (<div style={{ position: 'relative', minHeight: "440px", zIndex: 5 }}>{this.props.children}
       </div>)
     } else {
-      return(
-          // <div style={{ position: "relative", minHeight: "440px" }}> 
-          //   {this.props.children}
-            <Container>
-            <Card className={classes.card} key={this.props.id}  style={{zIndex: 1}}>
-              <CardContent style={{ padding: "5px", height: "450px"}}>
+      return (
+        // <div style={{ position: "relative", minHeight: "440px" }}> 
+        //   {this.props.children}
+        <Container style={{marginTop: "20px"}}>
+          <Slide direction="right" in={this.state.checked} unmountOnExit>
+            <Card className={classes.card} key={this.props.id} style={{ zIndex: 1 }}>
+              <CardContent style={{ padding: "5px", height: "450px" }}>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {this.props.name}
+                  {this.props.name}
                 </Typography>
                 <Typography variant="body2" component="p">
-                {this.props.desc}
+                  {this.props.desc}
                 </Typography>
                 <CardActions>
-              <a data-value={this.props.data} href="#" onClick={this.handleClick}>Start Survey</a>
-                  <a href="#">View Results</a>
+                  <a data-value={this.props.data} href="#" onClick={this.handleClick}>Start Survey</a>
+                  {/* <a href="#">View Results</a> */}
                   <a className="btn-floating btn waves-effect waves-light grey darken-4" ariaLabel="close"><i data-value1={this.props.userID} data-value2={this.props.id} className="material-icons" onClick={this.unsave}>close</i></a>
-              </CardActions>
+                </CardActions>
               </CardContent>
             </Card>
-            </Container>
-            /* <div className="col s12 m6 offset-m3" key={this.props.id} style={{zIndex: 1, position: "absolute" }}>
-              <div className="card medium blue-grey darken-1">
-                <div className="card-content white-text">
-                  <span className="card-title">{this.props.name}</span>
-                  <p>{this.props.desc}</p>
-                </div>
-                <div className="card-action">
-                  <a data-value={this.props.data} href="#" onClick={this.handleClick}>Start Survey</a>
-                  <a href="#">View Results</a>
-                  <a className="btn-floating btn waves-effect waves-light grey darken-4" ariaLabel="close"><i data-value1={this.props.userID} data-value2={this.props.id} className="material-icons" onClick={this.unsave}>close</i></a>
-                </div>
-              </div>
-            </div> */
-      //     </div>
-        
+          </Slide>
+        </Container>
       )
     }
   }

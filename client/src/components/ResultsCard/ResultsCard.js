@@ -47,6 +47,8 @@ return (
             </Typography>
         <CardActions>
             <Button onClick={props.submitAnswers} >get results</Button>
+            <br></br>
+            <Button style={{margin: "10px"}} onClick={props.handleClose} >Close</Button>
         </CardActions>
       </CardContent>
     </Card>
